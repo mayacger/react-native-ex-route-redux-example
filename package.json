@@ -1,0 +1,36 @@
+{
+  "name": "react-native-ex-route-redux-example",
+  "version": "1.0.0",
+  "description": "react-native-ex-route-redux-example",
+  "main": "index.js",
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "react": "15.2.1",
+    "react-native": "^0.31.0",
+    "react-native-ex-route-redux": "git+https://github.com/mayacger/react-native-ex-route-redux.git",
+    "react-redux": "^4.4.5",
+    "redux": "~3.5.2",
+    "redux-actions": "^0.10.0",
+    "redux-create-reducer": "^1.1.1",
+    "redux-thunk": "~2.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mayacger/react-native-ex-route-redux-example.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "NavigationExperimental",
+    "route",
+    "redux"
+  ],
+  "author": "mayacger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mayacger/react-native-ex-route-redux-example/issues"
+  },
+  "homepage": "https://github.com/mayacger/react-native-ex-route-redux-example#readme"
+}
