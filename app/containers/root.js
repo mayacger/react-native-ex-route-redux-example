@@ -8,6 +8,7 @@ import {
   Alert,
   TouchableOpacity,
   Platform,
+  Image,
 } from 'react-native';
 import {bindActionCreators} from 'redux';
 
@@ -27,14 +28,14 @@ import {
 import Counter from '../components/counter';
 import Page from '../components/page';
 
-
+import icon from '../bullsEye@2x.png';
 const tabIcon = (tab, index, key, selectedIndex) => {
   let color = index === selectedIndex ? 'rgba(0, 0, 255, 0.6)' : '#979797';
 
   return (
     <View index={index} key={key} style={{ flex: 1, alignItems: 'center' }}>
 
-      <Text style={{ color }}>{tab.iconName}</Text>
+      <Image source={icon} />
       <Text style={{ color }}>{tab.title}</Text>
     </View>
   );
