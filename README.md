@@ -1,6 +1,7 @@
 # react-native-ex-route-redux-example
 react-native-ex-route-redux-example
 
+![demo gif](https://github.com/mayacger/react-native-ex-route-redux/blob/master/demo.gif)
 
 ##Sample Configuration
 ```
