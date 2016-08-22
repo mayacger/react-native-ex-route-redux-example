@@ -56,4 +56,3 @@ export default connect(state => ({
     actions: bindActionCreators(counterActions, dispatch)
   })
 )(Counter);
-// export default Counter;

@@ -89,7 +89,7 @@ const renderTitle = (props) => (
   </View>
 );
 
-class CounterApp extends Component {
+class Root extends Component {
   constructor(props) {
     super(props);
   }
@@ -113,12 +113,7 @@ class CounterApp extends Component {
 
     return (
         <RouterEx {...this.props}  scenes={scenes} />
-      )
-    // return (
-    //   <Counter
-    //     counter={state.count}
-    //     {...actions} />
-    // );
+    )
   }
 }
 
@@ -154,4 +149,4 @@ export default connect(state => ({
   (dispatch) => ({
     actions: bindActionCreators(counterActions, dispatch)
   })
-)(CounterApp);
+)(Root);
