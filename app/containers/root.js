@@ -80,7 +80,7 @@ const modalPopButton = (props, navigate, dispatch) => {
   );
 };
 
-/* eslint react/prop-types: 0 */
+
 const renderTitle = (props) => (
   <View style={styles.customTitleContainer}>
     <Text style={styles.customTitle}>
