@@ -39,8 +39,7 @@ const tabIcon = (tab, index, key, selectedIndex) => {
 
   return (
     <View index={index} key={key} style={{ flex: 1, alignItems: 'center' }}>
-
-      <Image source={icon} />
+      {tab.tabIcon}
       <Text style={{ color }}>{tab.title}</Text>
     </View>
   );
@@ -133,9 +132,9 @@ class Root extends Component {
     const scenes = (
         <RootScene type="tabs">
           <Schema key="default" defaultheaderStyle={headerStyle} titleStyle={{ fontSize: 17, fontFamily: 'avenir', color: '#333', fontWeight: '400' }} icon={tabIcon} renderBackButton={renderBackButton} />
-          <TabScene key="homeTab"  schema="default" title="Home" iconName={<Text>HomeIcon</Text>} component={Page} renderLeftButton={renderLeftButton} renderRightButton={renderRightButton} renderTitle={renderTitle}  />
-          <TabScene key="profileTab" schema="default" title="Profile" iconName="listIcon" component={Counter}  />
-          <TabScene key="settingsTab" schema="default" title="Settings" iconName="meIcon" component={Profile} />
+          <TabScene key="homeTab"  schema="default" title="Home" tabIcon={<Image source={icon} />} component={Page} renderLeftButton={renderLeftButton} renderRightButton={renderRightButton} renderTitle={renderTitle}  />
+          <TabScene key="profileTab" schema="default" title="Profile" tabIcon={<Image source={icon} />} component={Counter}  />
+          <TabScene key="settingsTab" schema="default" title="Settings" tabIcon={<Image source={icon} />} component={Profile} />
           <Scene key="login" schema="default" component={Counter} title="Login" hideNavBar tabBarStyle={hidetabBarStyle} />
           <Scene key="page" schema="default" component={Page}  />
           <Scene key="nested" schema="default" component={Nested}  headerStyle={{backgroundColor:"green"}} />
