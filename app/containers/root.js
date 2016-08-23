@@ -138,7 +138,7 @@ class Root extends Component {
           <TabScene key="settingsTab" schema="default" title="Settings" iconName="meIcon" component={Profile} />
           <Scene key="login" schema="default" component={Counter} title="Login" hideNavBar tabBarStyle={hidetabBarStyle} />
           <Scene key="page" schema="default" component={Page}  />
-          <Scene key="nested" schema="default" component={Nested}  headerStyle={{backgroundColor:"#green"}} />
+          <Scene key="nested" schema="default" component={Nested}  headerStyle={{backgroundColor:"green"}} />
         </RootScene>
       );
 
