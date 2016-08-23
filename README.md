@@ -115,6 +115,27 @@ const renderTitle = (props) => (
   </View>
 );
 
+//Menu button
+const renderLeftMenuButton = (props, navigate, dispatch) => {
+  let handleNavigation = () => dispatch(navigate.toggleLeftDrawer());
+
+  return (
+    <TouchableOpacity style={styles.buttonContainer} onPress={handleNavigation}>
+      <Text style={styles.button}>Menu</Text>
+    </TouchableOpacity>
+  );
+};
+
+const renderRightMenuButton = (props, navigate, dispatch) => {
+  let handleNavigation = () => dispatch(navigate.toggleRightDrawer());
+
+  return (
+    <TouchableOpacity style={styles.buttonContainer} onPress={handleNavigation}>
+      <Text style={styles.button}>Menu</Text>
+    </TouchableOpacity>
+  );
+};
+
 class Root extends Component {
   constructor(props) {
     super(props);
