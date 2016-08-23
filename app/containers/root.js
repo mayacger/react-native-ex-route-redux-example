@@ -14,6 +14,7 @@ import {bindActionCreators} from 'redux';
 
 import * as counterActions from '../actions/counterActions';
 import { connect } from 'react-redux';
+import DrawerMenu from '../components/drawerMenu/drawerMenu'
 
 import {
   // actions as NavigationExperimentalActions ,
@@ -22,11 +23,15 @@ import {
   Scene,
   Schema,
   TabScene,
+  DrawerScene,
 } from 'react-native-ex-route-redux';
 
 
 import Counter from '../components/counter';
 import Page from '../components/page';
+import Nested from '../components/nested';
+import Profile from '../components/profile';
+
 
 import icon from '../bullsEye@2x.png';
 const tabIcon = (tab, index, key, selectedIndex) => {
@@ -46,7 +51,7 @@ const renderBackButton = (props, navigate, dispatch) => {
 
   return (
     <TouchableOpacity style={styles.buttonContainer} onPress={handleNavigation}>
-      <Text style={styles.button}>Back</Text>
+      <Text style={styles.button}>返回</Text>
     </TouchableOpacity>
   );
 };
@@ -89,6 +94,30 @@ const renderTitle = (props) => (
   </View>
 );
 
+
+
+//Menu button
+const renderLeftMenuButton = (props, navigate, dispatch) => {
+  let handleNavigation = () => dispatch(navigate.toggleLeftDrawer());
+
+  return (
+    <TouchableOpacity style={styles.buttonContainer} onPress={handleNavigation}>
+      <Text style={styles.button}>Menu</Text>
+    </TouchableOpacity>
+  );
+};
+
+const renderRightMenuButton = (props, navigate, dispatch) => {
+  let handleNavigation = () => dispatch(navigate.toggleRightDrawer());
+
+  return (
+    <TouchableOpacity style={styles.buttonContainer} onPress={handleNavigation}>
+      <Text style={styles.button}>Menu</Text>
+    </TouchableOpacity>
+  );
+};
+
+
 class Root extends Component {
   constructor(props) {
     super(props);
@@ -97,19 +126,35 @@ class Root extends Component {
   render() {
     const { state, actions } = this.props;
 
-    let hideHeader = {height:0,overflow:'hidden'};
+    let headerStyle = {backgroundColor:"#F60"};
+    let hidetabBarStyle = {height:0,overflow:'hidden',borderTopWidth:0};
 
+    //tabs 类型
     const scenes = (
         <RootScene type="tabs">
-          <Schema key="default" titleStyle={{ fontSize: 17, fontFamily: 'avenir', color: '#333', fontWeight: '400' }} icon={tabIcon}  />
-          <TabScene key="home"  schema="default" title="Home" iconName={<Text>HomeIcon</Text>} component={Page} renderLeftButton={renderLeftButton} renderRightButton={renderRightButton} renderTitle={renderTitle}  />
-          <TabScene key="list" schema="default" title="list" iconName="listIcon" component={Counter}  />
-          <TabScene key="me" schema="default" title="me" iconName="meIcon" component={Counter} />
-          <Scene key="login" schema="default" component={Counter} title="Login" tabBarStyle={{backgroundColor:"#eee",height:0,overflow:'hidden',borderTopWidth:0}} />
-          <Scene key="page" schema="default" component={Counter} />
-          <Scene key="nested" schema="default" component={Counter} />
+          <Schema key="default" defaultheaderStyle={headerStyle} titleStyle={{ fontSize: 17, fontFamily: 'avenir', color: '#333', fontWeight: '400' }} icon={tabIcon} renderBackButton={renderBackButton} />
+          <TabScene key="homeTab"  schema="default" title="Home" iconName={<Text>HomeIcon</Text>} component={Page} renderLeftButton={renderLeftButton} renderRightButton={renderRightButton} renderTitle={renderTitle}  />
+          <TabScene key="profileTab" schema="default" title="Profile" iconName="listIcon" component={Counter}  />
+          <TabScene key="settingsTab" schema="default" title="Settings" iconName="meIcon" component={Profile} />
+          <Scene key="login" schema="default" component={Counter} title="Login" hideHead="true" tabBarStyle={hidetabBarStyle} />
+          <Scene key="page" schema="default" component={Page}  />
+          <Scene key="nested" schema="default" component={Nested}  headerStyle={{backgroundColor:"green"}} />
         </RootScene>
       );
+
+    //menu 类型
+    const scenesMenu = (
+      <RootScene type="drawer" leftMenuComponent={DrawerMenu} rightMenuComponent={DrawerMenu} renderBackButton={renderBackButton}>
+        <Schema key="drawer" renderLeftButton={renderLeftMenuButton} renderRightButton={renderRightMenuButton} />
+        <Schema key="default" titleStyle={{ fontSize: 17, fontFamily: 'avenir', color: '#4A4A4A', fontWeight: '400' }} renderBackButton={renderBackButton} />
+        <DrawerScene key="home" schema="drawer" position="left" title="Drawer One" component={Counter} />
+        <DrawerScene key="profile" schema="drawer" position="left" title="Drawer Two" component={Counter} />
+        <DrawerScene key="settings" schema="drawer" position="right" title="Drawer Three" component={Counter} />
+        <Scene key="login" schema="default" component={Counter} title="Login" />
+        <Scene key="page" schema="default" component={Counter} />
+        <Scene key="nested" schema="default" component={Counter} />
+      </RootScene>
+    )
 
     return (
         <RouterEx {...this.props}  scenes={scenes} />
