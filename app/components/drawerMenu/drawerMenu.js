@@ -9,18 +9,16 @@ import {
 import styles from './drawerMenu.style';
 
 
-const DrawerMenu = (props) => (
-  <View style={styles.mainView}>
-    {props.scenes.map((scene, index) => {
-      let select = () => props.switch(index, scene.key);
-      return (
-        <TouchableOpacity key={index} onPress={select} style={styles.menuItem}>
-          <Text style={styles.menuItemText}>{scene.props.title}</Text>
-        </TouchableOpacity>
-      );
-    })}
-  </View>
-);
+const DrawerMenu = (props) => {
+  let select = () => props.switch(1, 'profileTab');
+  return (
+    <View style={styles.mainView}>
+          <TouchableOpacity onPress={select} style={styles.menuItem}>
+            <Text style={styles.menuItemText}>side</Text>
+          </TouchableOpacity>
+    </View>
+  )
+};
 
 DrawerMenu.propTypes = {
   scenes: PropTypes.array,
@@ -29,7 +27,7 @@ DrawerMenu.propTypes = {
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  switch: (index, key) => dispatch(ownProps.navigate.switch(index, key)),
+  switch: (index, key) => dispatch(ownProps.navigate.navigateSwitch(index, key)),
 });
 
 export default connect(null, mapDispatchToProps)(DrawerMenu);

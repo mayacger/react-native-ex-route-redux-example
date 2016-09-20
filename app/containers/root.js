@@ -18,7 +18,7 @@ import DrawerMenu from '../components/drawerMenu/drawerMenu'
 
 import {
   // actions as NavigationExperimentalActions ,
-  RouterEx,
+  Router,
   RootScene,
   Scene,
   Schema,
@@ -111,7 +111,7 @@ const renderRightMenuButton = (props, navigate, dispatch) => {
 
   return (
     <TouchableOpacity style={styles.buttonContainer} onPress={handleNavigation}>
-      <Text style={styles.button}>Menu</Text>
+      <Text style={styles.button}>rightMenu</Text>
     </TouchableOpacity>
   );
 };
@@ -128,12 +128,12 @@ class Root extends Component {
     let headerStyle = {backgroundColor:"#F60"};
     let hidetabBarStyle = {height:0,overflow:'hidden',borderTopWidth:0};
 
-    //tabs 类型
+    // 类型 type="Card" type="CardStack" 默认 NavigationCardStack
     const scenes = (
-        <RootScene type="tabs">
+        <RootScene type="CardStack" leftMenuComponent={DrawerMenu} rightMenuComponent={DrawerMenu}>
           <Schema key="default" defaultheaderStyle={headerStyle} titleStyle={{ fontSize: 17, fontFamily: 'avenir', color: '#333', fontWeight: '400' }} icon={tabIcon} renderBackButton={renderBackButton} />
-          <TabScene key="homeTab"  schema="default" title="Home" tabIcon={<Image source={icon} />} component={Page} renderLeftButton={renderLeftButton} renderRightButton={renderRightButton} renderTitle={renderTitle}  />
-          <TabScene key="profileTab" schema="default" title="Profile" tabIcon={<Image source={icon} />} component={Counter}  />
+          <TabScene key="homeTab"  schema="default" title="Home" tabIcon={<Image source={icon} />} component={Page}   renderLeftButton={renderLeftMenuButton} renderRightButton={renderRightMenuButton} />
+          <TabScene key="profileTab" schema="default" title="Profile" tabIcon={<Image source={icon} />} component={Counter}  renderLeftButton={renderLeftButton} renderRightButton={renderRightButton} renderTitle={renderTitle}/>
           <TabScene key="settingsTab" schema="default" title="Settings" tabIcon={<Image source={icon} />} component={Profile} />
           <Scene key="login" schema="default" component={Counter} title="Login" hideNavBar tabBarStyle={hidetabBarStyle} />
           <Scene key="page" schema="default" component={Page}  />
@@ -141,22 +141,10 @@ class Root extends Component {
         </RootScene>
       );
 
-    //menu 类型
-    const scenesMenu = (
-      <RootScene type="drawer" leftMenuComponent={DrawerMenu} rightMenuComponent={DrawerMenu} renderBackButton={renderBackButton}>
-        <Schema key="drawer" renderLeftButton={renderLeftMenuButton} renderRightButton={renderRightMenuButton} />
-        <Schema key="default" titleStyle={{ fontSize: 17, fontFamily: 'avenir', color: '#4A4A4A', fontWeight: '400' }} renderBackButton={renderBackButton} />
-        <DrawerScene key="home" schema="drawer" position="left" title="Drawer One" component={Counter} />
-        <DrawerScene key="profile" schema="drawer" position="left" title="Drawer Two" component={Counter} />
-        <DrawerScene key="settings" schema="drawer" position="right" title="Drawer Three" component={Counter} />
-        <Scene key="login" schema="default" component={Counter} title="Login" />
-        <Scene key="page" schema="default" component={Counter} />
-        <Scene key="nested" schema="default" component={Counter} />
-      </RootScene>
-    )
+
 
     return (
-        <RouterEx {...this.props}  scenes={scenes} />
+        <Router {...this.props}  scenes={scenes} />
     )
   }
 }
@@ -191,6 +179,7 @@ export default connect(state => ({
     navState: state.navState,
   }),
   (dispatch) => ({
-    actions: bindActionCreators(counterActions, dispatch)
+    actions: bindActionCreators(counterActions, dispatch),
+    dispatch, //props 必须添加dispatch
   })
 )(Root);
