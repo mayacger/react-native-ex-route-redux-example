@@ -127,6 +127,8 @@ class Root extends Component {
 
     let headerStyle = {backgroundColor:"#F60"};
     let hidetabBarStyle = {height:0,overflow:'hidden',borderTopWidth:0};
+    //hideNavBar 隐藏头部属性
+
 
     // 类型 type="Card" type="CardStack" 默认 NavigationCardStack
     const scenes = (
@@ -135,7 +137,7 @@ class Root extends Component {
           <TabScene key="homeTab"  schema="default" title="Home" tabIcon={<Image source={icon} />} component={Page}   renderLeftButton={renderLeftMenuButton} renderRightButton={renderRightMenuButton} />
           <TabScene key="profileTab" schema="default" title="Profile" tabIcon={<Image source={icon} />} component={Counter}  renderLeftButton={renderLeftButton} renderRightButton={renderRightButton} renderTitle={renderTitle}/>
           <TabScene key="settingsTab" schema="default" title="Settings" tabIcon={<Image source={icon} />} component={Profile} />
-          <Scene key="login" schema="default" component={Counter} title="Login" hideNavBar tabBarStyle={hidetabBarStyle} />
+          <Scene key="login" schema="default" component={Counter} title="Login"  tabBarStyle={hidetabBarStyle} />
           <Scene key="page" schema="default" component={Page}  />
           <Scene key="nested" schema="default" component={Nested}  headerStyle={{backgroundColor:"green"}} />
         </RootScene>
