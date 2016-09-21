@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 let Nested = (props) => {
-  let push = () => props.dispatch(props.navigate.push('nested', { title: 'Pushed from within page', data: 'Some data from the pushed page tab', parent: props.parent }));
+  let push = () => props.dispatch(props.navigate.push('profileTab', { title: 'Pushed from within page', data: 'Some data from the pushed page tab', parent: props.parent }));
   let popTo = () => props.dispatch(props.navigate.popTo(props.parent));
 
   return (

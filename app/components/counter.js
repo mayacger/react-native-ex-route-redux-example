@@ -28,7 +28,7 @@ class Counter extends Component {
 
   render() {
     const { state, dispatch ,actions, navigate, parent} = this.props;
-    let push = () => dispatch(navigate.push('nested', { title: 'Pushed from within page', data: 'Some data from the pushed page tab', parent: parent }));
+    let push = () => dispatch(navigate.push('/Applications', { title: 'Pushed Applications', data: 'Some data from the pushed page tab', parent: parent }));
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>{state.count}</Text>

@@ -11,7 +11,7 @@ const propTypes = {
 };
 
 let Page = (props) => {
-  let push = () => props.dispatch(props.navigate.push('nested', { title: 'Pushed from within page', data: 'Some data from the pushed page tab', parent: props.parent }));
+  let push = () => props.dispatch(props.navigate.push('nested', { title: 'Pushed nested', data: 'Some data from the pushed page tab', parent: props.parent }));
   let closeModal = () => props.dispatch(props.navigate.modalPop());
 
   return (
